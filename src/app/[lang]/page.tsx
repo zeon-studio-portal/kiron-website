@@ -1,3 +1,4 @@
+import CallToAction from "@/components/CallToAction";
 import Publication from "@/components/Publication";
 import config from "@/config/config.json";
 import languages from "@/config/language.json";
@@ -10,8 +11,7 @@ import Accordion from "@/shortcodes/Accordion";
 import { Button } from "@/types";
 import Link from "next/link";
 import path from "path";
-import { FaMagnifyingGlass } from "react-icons/fa6";
-import { IoArrowUpCircleOutline } from "react-icons/io5";
+import { FaArrowRight, FaMagnifyingGlass } from "react-icons/fa6";
 
 // remove dynamicParams
 export const dynamicParams = false;
@@ -241,24 +241,20 @@ const Home = ({ params }: { params: { lang: string } }) => {
 
       {/* faq */}
       <section className="section">
-        <div className="container">
-        <Accordion faqs={faq.accordion} />
-          {/* {faq.accordion.map((item: any, index: number) => (
-            <div
-              key={index}
-              className={"accordion" + (index === 0 ? " active" : "")}
-            >
-              <button className="accordion-header" data-accordion>
-                {item.title}
-                <IoArrowUpCircleOutline className="accordion-icon" />
-              </button>
-              <div className="accordion-content">
-                <p>{item.description}</p>
-              </div>
-            </div>
-          ))} */}
+        <div className="container-sm">
+          <div className="text-center mb-14">
+            <h2
+              className="text-5xl font-medium leading-tight mb-6 text-dark"
+              dangerouslySetInnerHTML={markdownify(faq.title)}
+            />
+          </div>
+
+          <Accordion faqs={faq.accordion} />
         </div>
       </section>
+
+      {/* cta */}
+     <CallToAction/>
     </>
   );
 };

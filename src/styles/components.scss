@@ -148,17 +148,20 @@
 
 // accordion
 .accordion {
-  @apply overflow-hidden rounded-lg border-2 border-border;
+  @apply overflow-hidden rounded-lg bg-body shadow;
   &-header {
-    @apply flex w-full cursor-pointer items-center justify-between p-8 text-left text-2xl font-bold text-dark;
+    @apply flex w-full cursor-pointer items-center justify-between p-8 text-left text-2xl font-medium text-dark;
   }
   &-icon {
     @apply h-[.8em] w-[.8em] transition-transform;
   }
   &-content {
-    @apply max-h-0 overflow-hidden text-dark-light;
+    @apply max-h-0 overflow-hidden text-dark-light text-xl;
   }
   &.active {
+    .accordion-header {
+      @apply pb-4;
+    }
     .accordion-icon {
       @apply rotate-45;
     }

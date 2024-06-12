@@ -7,7 +7,7 @@ import {
 } from "react-icons/io5";
 
 const Accordion = ({ faqs }: { faqs: any }) => {
-  const [activeTab, setActiveTab] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<number | null>(0);
 
   return (
     <div className="space-y-6">
@@ -24,9 +24,9 @@ const Accordion = ({ faqs }: { faqs: any }) => {
           >
             {faq.title}
             {activeTab === index ? (
-              <IoArrowUpCircleOutline />
+              <IoArrowUpCircleOutline className="text-primary" />
             ) : (
-              <IoArrowDownCircleOutline />
+              <IoArrowDownCircleOutline className="text-primary" />
             )}
           </button>
           <div className="accordion-content">{faq.description}</div>

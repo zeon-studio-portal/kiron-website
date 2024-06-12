@@ -1,9 +1,7 @@
 "use client";
 
 import Logo from "@/components/Logo";
-import Social from "@/components/Social";
 import config from "@/config/config.json";
-import social from "@/config/social.json";
 import { slugSelector } from "@/lib/utils/slugSelector";
 import { markdownify } from "@/lib/utils/textConverter";
 import { INavigationLink } from "@/types";
@@ -19,11 +17,14 @@ const Footer = ({
   const { copyright } = config.params;
 
   return (
-    <footer className="bg-theme-light ">
+    <footer className="bg-primary ">
       <div className="container">
         <div className="row items-center py-10">
           <div className="mb-8 text-center lg:col-3 lg:mb-0 lg:text-left">
             <Logo lang={lang} />
+          </div>
+          <div className="mb-8 text-center lg:col-3 lg:mb-0 lg:mt-0 lg:text-right">
+            <p>Get Connected: kiron@secdev.com</p>
           </div>
           <div className="mb-8 text-center lg:col-6 lg:mb-0">
             <ul>
@@ -34,12 +35,9 @@ const Footer = ({
               ))}
             </ul>
           </div>
-          <div className="mb-8 text-center lg:col-3 lg:mb-0 lg:mt-0 lg:text-right">
-            <Social source={social.main} className="social-icons" />
-          </div>
         </div>
       </div>
-      <div className="border-t border-border py-7 ">
+      <div className="py-7 ">
         <div className="container text-center text-light ">
           <p dangerouslySetInnerHTML={markdownify(copyright)} />
         </div>
