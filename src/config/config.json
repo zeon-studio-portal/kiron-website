@@ -1,0 +1,59 @@
+{
+  "site": {
+    "title": "Kiron",
+    "base_url": "https://kiron.vercel.app",
+    "base_path": "/",
+    "trailing_slash": false,
+    "favicon": "/images/favicon.png",
+    "logo": "/images/logo.png",
+    "logo_darkmode": "/images/logo-darkmode.png",
+    "logo_width": "122",
+    "logo_height": "56",
+    "logo_text": "Kiron"
+  },
+
+  "settings": {
+    "sticky_header": true,
+    "theme_switcher": true,
+    "default_theme": "light",
+    "pagination": 2,
+    "summary_length": 200,
+    "blog_folder": "blog",
+    "default_language": "en",
+    "disable_languages": [],
+    "default_language_in_subdir": false
+  },
+
+  "category": {
+    "enable": true,
+    "categories": [
+      "Flashnotes",
+      "Quarterly Report",
+      "Monthly Report",
+      "Podcast"
+    ]
+  },
+
+  "params": {
+    "contact_form_action": "#",
+    "copyright": "Designed And Developed by [Zeon Studio](https://zeon.studio)"
+  },
+
+  "navigation_button": {
+    "enable": true,
+    "label": "Ask kiron AI",
+    "link": "#"
+  },
+
+  "disqus": {
+    "enable": true,
+    "shortname": "themefisher-template",
+    "settings": {}
+  },
+
+  "metadata": {
+    "meta_author": "Kiron",
+    "meta_image": "/images/og-image.png",
+    "meta_description": "Next Boilerplate"
+  }
+}
