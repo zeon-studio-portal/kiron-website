@@ -84,27 +84,24 @@ const Home = ({ params }: { params: { lang: string } }) => {
 
         <div className="bg-top-right">
           <ImageFallback
-            src="/images/banner-bg-phone.svg"
+            src="/images/banner-r-bg.svg"
             width={320}
             height={613}
-            className="block lg:hidden"
+            className="lg:block hidden"
           />
         </div>
 
         <div className="container-sm relative">
           <div className="row justify-center items-center pb-10">
-            <div className="col-12 max-md:order-1 lg:col-6 xl:col-8 max-md:text-center max-md:mb-6">
+            <div className="col-12 lg:col-6 max-md:order-1 text-center lg:text-left mb-8 md:mb-16 lg:mb-0">
               <h1
-                className="mb-8 md:mb-4 h1 text-[32px] xl:text-[81px] font-semibold text-text"
+                className="mb-8 md:mb-4 h1 text-[32px] xl:text-[52px] 2xl:text-[81px] font-semibold text-text"
                 dangerouslySetInnerHTML={markdownify(banner.title)}
               />
               {banner.button!.enable && (
                 <Link
                   className="btn max-md:btn-md btn-secondary"
                   href={banner.button!.link}
-                  target={
-                    banner.button!.link.startsWith("http") ? "_blank" : "_self"
-                  }
                   rel="noopener"
                 >
                   <FaMagnifyingGlass
@@ -118,7 +115,7 @@ const Home = ({ params }: { params: { lang: string } }) => {
             {banner.image && (
               <ImageFallback
                 src={banner.image}
-                className="col-10 max-md:order-2 lg:col-6 xl:col-4 lg:scale-75 2xl:translate-x-10 2xl:scale-110"
+                className="col-8 lg:col-4 xl:col-6 max-md:order-2 xl:scale-75 2xl:translate-x-10 2xl:scale-110"
                 width="489"
                 height="676"
                 alt="banner image"

@@ -54,6 +54,7 @@ module.exports = {
         secondary: theme.colors.default.theme_color.secondary,
         accent: theme.colors.default.theme_color.accent,
         body: theme.colors.default.theme_color.body,
+        "body-light": theme.colors.default.theme_color.body_light,
         border: theme.colors.default.theme_color.border,
         "border-dark": theme.colors.default.theme_color.border_dark,
         "theme-light": theme.colors.default.theme_color.theme_light,

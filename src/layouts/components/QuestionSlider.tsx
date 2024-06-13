@@ -9,25 +9,24 @@ const QuestionSlider = ({ kiron }: { kiron: any }) => {
     <>
       <Swiper
         loop={true}
-        centeredSlides={true}
         spaceBetween={24}
         breakpoints={{
           768: {
             slidesPerView: 2,
           },
-          992: {
+          1025: {
             slidesPerView: 3,
           },
         }}
       >
         {kiron.questions.map((q: any, index: number) => (
-          <SwiperSlide className="" key={index}>
+          <SwiperSlide key={index}>
             <div
               key={q}
-              className="border border-border-dark rounded-lg bg-accent"
+              className="light-questions border border-border-dark rounded-lg bg-accent"
             >
               <p
-                className="text-2xl font-medium text-text p-12"
+                className="text-2xl font-medium text-text p-8 xl:p-12"
                 dangerouslySetInnerHTML={markdownify(q)}
               />
             </div>

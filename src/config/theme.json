@@ -6,6 +6,7 @@
         "secondary": "#F42A40",
         "accent": "#024735",
         "body": "#fff",
+        "body_light": "#F5F5F5",
         "border": "#eaeaea",
         "border_dark": "#919191",
         "theme_light": "#00C893",
