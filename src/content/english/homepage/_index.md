@@ -24,6 +24,12 @@ kiron:
     - "What are the most common cyber scams in Bangladesh?"
     - "What do we know about cyptocurrency usage by terrorists in Bangladesh?"
     - "What is the trend of online sexual exploitation in Bangladesh?"
+    - "What are the most common cyber scams in Bangladesh?"
+    - "What do we know about cyptocurrency usage by terrorists in Bangladesh?"
+    - "What is the trend of online sexual exploitation in Bangladesh?"
+    - "What are the most common cyber scams in Bangladesh?"
+    - "What do we know about cyptocurrency usage by terrorists in Bangladesh?"
+    - "What is the trend of online sexual exploitation in Bangladesh?"
 
 about:
   title: "About Kiron"

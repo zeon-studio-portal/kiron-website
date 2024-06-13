@@ -14,8 +14,8 @@ const Publication = ({
   publications: any;
 }) => {
   return (
-    <section className="section">
-      <div className="container px-[140px] py-[130px] bg-primary kiron-container rounded-lg">
+    <section id="publications" className="section">
+      <div className="container lg:px-[140px] py-12 lg:py-[130px] bg-primary kiron-container rounded-lg">
         <div className="text-center mb-14">
           <h2
             className="text-5xl font-medium leading-tight mb-6 text-text"
@@ -31,7 +31,7 @@ const Publication = ({
           />
         </div>
 
-        <div className="flex items-center justify-center space-x-4 mb-14">
+        <div className="shuffle-filter flex flex-wrap items-center justify-center gap-5 mb-14">
           {categories.map((group: any, i: number) => (
             <button
               key={i}
@@ -48,7 +48,7 @@ const Publication = ({
           {publications.map((publication: any, i: number) => (
             <div
               key={i}
-              className="col-6 lg:col-4"
+              className="col-12 lg:col-4"
               data-groups={`["${publication.frontmatter.categories}"]`}
             >
               <div className="flex flex-col justify-between h-full p-8 bg-body rounded-lg">

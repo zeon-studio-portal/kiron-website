@@ -8,15 +8,20 @@
 
 // container
 .container {
-  @apply mx-auto max-w-[1587.5px] px-4;
+  @apply mx-auto max-w-[95%] lg:max-w-[1587.5px];
   &-sm {
-    @apply mx-auto max-w-[1277.5px];
+    @apply mx-auto max-w-[95%] lg:max-w-[1277.5px];
   }
+}
+
+br {
+  @apply hidden lg:block;
 }
 
 // banner section
 .banner-section {
-  @apply relative bg-[url('/images/banner-bg.svg')] bg-cover bg-top bg-no-repeat;
+  @apply relative bg-[url('/images/banner-bg-phone.svg')] lg:bg-[url('/images/banner-bg.svg')] bg-cover bg-top bg-no-repeat;
+
   .bg-top-left .bg-top-right {
     @apply bg-no-repeat bg-contain w-full h-full z-10;
   }
@@ -150,7 +155,7 @@
 .accordion {
   @apply overflow-hidden rounded-lg bg-body shadow;
   &-header {
-    @apply flex w-full cursor-pointer items-center justify-between p-8 text-left text-2xl font-medium text-dark;
+    @apply flex w-full cursor-pointer justify-between p-8 text-left text-2xl font-medium text-dark;
   }
   &-icon {
     @apply h-[.8em] w-[.8em] transition-transform;

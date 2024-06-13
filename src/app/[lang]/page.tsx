@@ -1,5 +1,6 @@
 import CallToAction from "@/components/CallToAction";
 import Publication from "@/components/Publication";
+import QuestionSlider from "@/components/QuestionSlider";
 import config from "@/config/config.json";
 import languages from "@/config/language.json";
 import ImageFallback from "@/helpers/ImageFallback";
@@ -11,7 +12,8 @@ import Accordion from "@/shortcodes/Accordion";
 import { Button } from "@/types";
 import Link from "next/link";
 import path from "path";
-import { FaArrowRight, FaMagnifyingGlass } from "react-icons/fa6";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+import "swiper/css";
 
 // remove dynamicParams
 export const dynamicParams = false;
@@ -68,29 +70,37 @@ const Home = ({ params }: { params: { lang: string } }) => {
   return (
     <>
       <SeoMeta />
+
       {/* header */}
       <section className="section bg-primary banner-section mb-24">
         <div className="bg-top-left">
-          <ImageFallback src="/images/banner-l-bg.svg" width={255} height={0} />
+          <ImageFallback
+            src="/images/banner-l-bg.svg"
+            width={255}
+            height={0}
+            className="lg:block hidden"
+          />
         </div>
+
         <div className="bg-top-right">
-          <ImageFallback src="/images/banner-r-bg.svg" width={255} height={0} />
+          <ImageFallback
+            src="/images/banner-bg-phone.svg"
+            width={320}
+            height={613}
+            className="block lg:hidden"
+          />
         </div>
 
         <div className="container-sm relative">
           <div className="row justify-center items-center pb-10">
-            <div className="col-8">
+            <div className="col-12 max-md:order-1 lg:col-6 xl:col-8 max-md:text-center max-md:mb-6">
               <h1
-                className="mb-4 text-h1 lg:text-[81px] font-semibold text-text"
+                className="mb-8 md:mb-4 h1 text-[32px] xl:text-[81px] font-semibold text-text"
                 dangerouslySetInnerHTML={markdownify(banner.title)}
-              />
-              <p
-                className="mb-8 text-text"
-                dangerouslySetInnerHTML={markdownify(banner.content ?? "")}
               />
               {banner.button!.enable && (
                 <Link
-                  className="btn btn-secondary"
+                  className="btn max-md:btn-md btn-secondary"
                   href={banner.button!.link}
                   target={
                     banner.button!.link.startsWith("http") ? "_blank" : "_self"
@@ -108,7 +118,7 @@ const Home = ({ params }: { params: { lang: string } }) => {
             {banner.image && (
               <ImageFallback
                 src={banner.image}
-                className="col-4 lg:translate-x-10 lg:scale-110"
+                className="col-10 max-md:order-2 lg:col-6 xl:col-4 lg:scale-75 2xl:translate-x-10 2xl:scale-110"
                 width="489"
                 height="676"
                 alt="banner image"
@@ -117,23 +127,24 @@ const Home = ({ params }: { params: { lang: string } }) => {
             )}
           </div>
 
-          <div className="row justify-between items-center mx-auto bg-body rounded-lg px-[112px] py-16 absolute w-full shadow">
-            <div className="col-6">
+          <div className="row justify-center lg:justify-between items-center mx-auto bg-body rounded-lg lg:px-[112px] py-10 lg:py-16 absolute max-md:mx-5 lg:w-full shadow">
+            <div className="col-12 lg:col-6 mb-6 lg:mb-0">
               <h5
-                className="h5 pr-10 w-fit text-primary border-r border-primary"
+                className="text-[22px] font-medium lg:pr-10 lg:w-fit text-primary text-center leading-6 lg:text-left lg:border-r lg:border-primary"
                 dangerouslySetInnerHTML={markdownify(partner.title)}
               />
             </div>
-            <div className="col-6">
-              <div className="flex items-baseline justify-end">
+            <div className="col-12 lg:col-6">
+              <div className="flex items-baseline justify-center lg:justify-end">
                 <ImageFallback
-                  className="mr-12"
+                  className="mr-12 w-auto h-12"
                   src={partner.companyLogo}
                   width={166}
                   height={65}
                   alt="company logo"
                 />
                 <ImageFallback
+                  className="w-auto h-12"
                   src={partner.partnerLogo}
                   width={209}
                   height={73}
@@ -146,19 +157,19 @@ const Home = ({ params }: { params: { lang: string } }) => {
       </section>
 
       {/* kiron */}
-      <section className="section">
-        <div className="container px-[140px] py-[130px] bg-primary kiron-container rounded-lg">
-          <div className="text-center mb-14">
+      <section id="kiron" className="section">
+        <div className="container px-6 lg:px-[140px] py-20 lg:py-[130px] bg-primary kiron-container rounded-lg">
+          <div className="text-center mb-14 mx-5 lg:mx-0">
             <h2
-              className="text-5xl font-medium leading-tight mb-6 text-text"
+              className="lg:text-5xl h2 font-medium leading-tight mb-6 text-text"
               dangerouslySetInnerHTML={markdownify(kiron.title)}
             />
             <p
-              className="text-xl font-normal text-light"
+              className="lg:text-xl font-normal text-light"
               dangerouslySetInnerHTML={markdownify(kiron.subtitle)}
             />
           </div>
-          <div className="p-14 border border-border rounded-lg bg-accent mb-14">
+          <div className="px-4 py-5 lg:p-14 border border-border rounded-lg bg-accent mb-14">
             <h3
               className="text-3xl font-medium leading-tight mb-10 text-text"
               dangerouslySetInnerHTML={markdownify(kiron.discussion.title)}
@@ -172,41 +183,32 @@ const Home = ({ params }: { params: { lang: string } }) => {
               />
             ))}
           </div>
-          <div className="row justify-center mb-14">
-            {kiron.questions.map((q) => (
-              <div className="col-4" key={q}>
-                <div className="border h-full border-border-dark rounded-lg bg-accent">
-                  <p
-                    className="text-2xl font-medium text-text p-12"
-                    dangerouslySetInnerHTML={markdownify(q)}
-                  />
-                </div>
-              </div>
-            ))}
+          <div className="mb-14">
+            <QuestionSlider kiron={kiron} />
           </div>
 
           <div className="relative">
             <input
               type="text"
               placeholder="Enter a prompt here"
-              className="w-full bg-transparent border-border px-10 py-[30px] rounded-lg focus:outline-none focus:ring-0 focus:shadow-none focus:border-border text-text text-2xl placeholder:text-light"
+              className="w-full bg-transparent border-border lg:px-10 pl-10 pr-32 py-[21px] lg:py-[30px] rounded-lg focus:outline-none focus:ring-0 focus:shadow-none focus:border-border text-text text-2xl placeholder:text-light"
             />
             <button
               className="absolute right-2 top-1/2 transform -translate-y-1/2
  flex items-center justify-center btn btn-secondary"
             >
-              <FaMagnifyingGlass className="inline-block align-baseline mr-3" />
-              Search Here
+              <FaMagnifyingGlass className="inline-block align-baseline lg:mr-3" />
+              <span className="hidden lg:block">Search Here</span>
             </button>
           </div>
         </div>
       </section>
 
       {/* about */}
-      <section className="section ">
+      <section id="about" className="section">
         <div className="container-sm text-dark-light">
-          <div className="row items-center gx-5">
-            <div className="col-6">
+          <div className="row items-center lg:gx-5 gy-4">
+            <div className="col-10 md:col-6">
               <ImageFallback
                 src={about.image}
                 width={535}
@@ -214,7 +216,7 @@ const Home = ({ params }: { params: { lang: string } }) => {
                 alt="about kiron image"
               />
             </div>
-            <div className="col-6">
+            <div className="col-12 md:col-6">
               <h2
                 className="text-5xl font-medium leading-tight mb-4"
                 dangerouslySetInnerHTML={markdownify(about.title)}
@@ -240,7 +242,7 @@ const Home = ({ params }: { params: { lang: string } }) => {
       />
 
       {/* faq */}
-      <section className="section">
+      <section id="faqs" className="section pb-0">
         <div className="container-sm">
           <div className="text-center mb-14">
             <h2
@@ -254,7 +256,7 @@ const Home = ({ params }: { params: { lang: string } }) => {
       </section>
 
       {/* cta */}
-     <CallToAction/>
+      <CallToAction />
     </>
   );
 };

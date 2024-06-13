@@ -24,9 +24,9 @@ const Accordion = ({ faqs }: { faqs: any }) => {
           >
             {faq.title}
             {activeTab === index ? (
-              <IoArrowUpCircleOutline className="text-primary" />
+              <IoArrowUpCircleOutline className="text-primary flex-shrink-0" />
             ) : (
-              <IoArrowDownCircleOutline className="text-primary" />
+              <IoArrowDownCircleOutline className="text-primary flex-shrink-0" />
             )}
           </button>
           <div className="accordion-content">{faq.description}</div>

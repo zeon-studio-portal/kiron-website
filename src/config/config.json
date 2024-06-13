@@ -13,8 +13,7 @@
   },
 
   "settings": {
-    "sticky_header": true,
-    "theme_switcher": true,
+    "sticky_header": false,
     "default_theme": "light",
     "pagination": 2,
     "summary_length": 200,

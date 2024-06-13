@@ -1,6 +1,5 @@
 "use client";
 
-import LanguageSwitcher from "@/components/LanguageSwitcher";
 import Logo from "@/components/Logo";
 import config from "@/config/config.json";
 import { getActiveLanguages } from "@/lib/languageParser";
@@ -44,7 +43,7 @@ const Header = ({
         >
           <svg
             id="show-button"
-            className="h-6 fill-current block"
+            className="h-6 fill-primary block"
             viewBox="0 0 20 20"
           >
             <title>Menu Open</title>
@@ -52,7 +51,7 @@ const Header = ({
           </svg>
           <svg
             id="hide-button"
-            className="h-6 fill-current hidden"
+            className="h-6 fill-red-500 hidden"
             viewBox="0 0 20 20"
           >
             <title>Menu Close</title>
@@ -131,10 +130,9 @@ const Header = ({
           )}
         </ul>
         <div className="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
-       
           {navigation_button.enable && (
             <Link
-              className="btn btn-primary btn-sm hidden lg:inline-block"
+              className="btn btn-primary px-[26px] py-[13px] hidden lg:inline-block"
               href={navigation_button.link}
             >
               {navigation_button.label}
