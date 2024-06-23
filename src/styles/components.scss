@@ -20,7 +20,7 @@ br {
 
 // banner section
 .banner-section {
-  @apply relative bg-[url('/images/banner-bg-phone.svg')] lg:bg-[url('/images/banner-bg.svg')] bg-cover bg-top bg-no-repeat;
+  @apply relative bg-[url('/images/banner-bg-phone.svg')] lg:bg-[url('/images/banner-bg.svg')]  bg-cover bg-top bg-no-repeat;
 
   .bg-top-left .bg-top-right {
     @apply bg-no-repeat bg-contain w-full h-full z-10;
@@ -167,13 +167,13 @@ br {
 .accordion {
   @apply overflow-hidden rounded-lg bg-body shadow;
   &-header {
-    @apply flex w-full cursor-pointer justify-between p-8 text-left text-2xl font-medium text-dark;
+    @apply flex w-full cursor-pointer justify-between p-8 text-left text-sm lg:text-2xl font-medium text-dark;
   }
   &-icon {
     @apply h-[.8em] w-[.8em] transition-transform;
   }
   &-content {
-    @apply max-h-0 overflow-hidden text-dark-light text-xl;
+    @apply max-h-0 overflow-hidden text-dark-light text-xs lg:text-xl;
   }
   &.active {
     .accordion-header {

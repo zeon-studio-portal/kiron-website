@@ -17,19 +17,21 @@ const Footer = ({
   const { copyright } = config.params;
 
   return (
-    <footer className="bg-dark pt-56">
+    <footer className="bg-dark pt-36 lg:pt-56">
       <div className="container">
         <div className="row items-center py-10">
           <div className="mb-8 text-center lg:col-3 lg:mb-0 lg:text-left">
             <Logo lang={lang} />
           </div>
-          <div className="mb-8 text-center lg:col-3 lg:mb-0 lg:mt-0 lg:text-right">
-            <p>Get Connected: kiron@secdev.com</p>
+          <div className="mb-8 lg:col-4 lg:mb-0 lg:mt-0">
+            <p className="text-xs lg:text-2xl text-center">
+              Get Connected: kiron@secdev.com
+            </p>
           </div>
-          <div className="mb-8 text-center lg:col-6 lg:mb-0">
-            <ul>
+          <div className="mb-8 lg:col-5 lg:mb-0">
+            <ul className="text-xs lg:text-xl text-center">
               {menu.footer.map((menu) => (
-                <li className="m-3 inline-block" key={menu.name}>
+                <li className="ml-3 inline-block" key={menu.name}>
                   <Link href={slugSelector(lang, menu.url)}>{menu.name}</Link>
                 </li>
               ))}
@@ -37,9 +39,12 @@ const Footer = ({
           </div>
         </div>
       </div>
-      <div className="py-7 ">
-        <div className="container text-center text-light ">
-          <p dangerouslySetInnerHTML={markdownify(copyright)} />
+      <div className="py-7">
+        <div className="container text-center text-light">
+          <p
+            dangerouslySetInnerHTML={markdownify(copyright)}
+            className="text-[10px] lg:text-xl"
+          />
         </div>
       </div>
     </footer>

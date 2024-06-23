@@ -7,7 +7,7 @@ import { slugSelector } from "@/lib/utils/slugSelector";
 import { INavigationLink } from "@/types";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const Header = ({
   lang,
@@ -21,16 +21,26 @@ const Header = ({
   const { navigation_button, settings } = config;
   const pathname = usePathname();
 
-  // scroll to top on route change
+  const [hash, setHash] = useState("");
+
+  const [navLinks, setNavLinks] = useState<HTMLElement[]>([]);
+
   useEffect(() => {
-    window.scroll(0, 0);
-  }, [pathname]);
+    setHash(window.location.hash);
+    setNavLinks(document.querySelectorAll(".nav-link") as any);
+  }, []);
+
+  const isActive = (url: string) => {
+    const lastSegment = url.split("/").pop() || "";
+
+    return pathname === url || pathname === `${url}/` || hash === lastSegment;
+  };
 
   return (
     <header
-      className={`header z-30 ${settings.sticky_header && "sticky top-0"}`}
+      className={`header z-30 ${settings.sticky_header ? "sticky top-0" : ""}`}
     >
-      <nav className="navbar container">
+      <nav className="navbar max-md:px-5 container">
         {/* logo */}
         <div className="order-0">
           <Logo lang={lang} />
@@ -39,7 +49,7 @@ const Header = ({
         <input id="nav-toggle" type="checkbox" className="hidden" />
         <label
           htmlFor="nav-toggle"
-          className="order-3 cursor-pointer flex items-center lg:hidden text-dark  lg:order-1"
+          className="order-3 cursor-pointer flex items-center lg:hidden text-dark lg:order-1"
         >
           <svg
             id="show-button"
@@ -47,7 +57,7 @@ const Header = ({
             viewBox="0 0 20 20"
           >
             <title>Menu Open</title>
-            <path d="M0 3h20v2H0V3z m0 6h20v2H0V9z m0 6h20v2H0V0z"></path>
+            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0V15z"></path>
           </svg>
           <svg
             id="hide-button"
@@ -69,53 +79,15 @@ const Header = ({
         >
           {main.map((menu, i) => (
             <React.Fragment key={`menu-${i}`}>
-              {menu.hasChildren ? (
-                <li className="nav-item nav-dropdown group relative">
-                  <span
-                    className={`nav-link inline-flex items-center ${
-                      menu.children?.map(({ url }) => url).includes(pathname) ||
-                      menu.children
-                        ?.map(({ url }) => `${url}/`)
-                        .includes(pathname)
-                        ? "active"
-                        : ""
-                    }`}
-                  >
-                    {menu.name}
-                    <svg className="h-4 w-4 fill-current" viewBox="0 0 20 20">
-                      <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-                    </svg>
-                  </span>
-                  <ul className="nav-dropdown-list hidden group-hover:block lg:invisible lg:absolute lg:block lg:opacity-0 lg:group-hover:visible lg:group-hover:opacity-100">
-                    {menu.children?.map((child, i) => (
-                      <li className="nav-dropdown-item" key={`children-${i}`}>
-                        <Link
-                          href={slugSelector(lang, child.url)}
-                          className={`nav-dropdown-link block ${
-                            (pathname === `${child.url}/` ||
-                              pathname === child.url) &&
-                            "active"
-                          }`}
-                        >
-                          {child.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ) : (
-                <li className="nav-item">
-                  <Link
-                    href={slugSelector(lang, menu.url)}
-                    className={`nav-link block ${
-                      (pathname === `${menu.url}/` || pathname === menu.url) &&
-                      "active"
-                    }`}
-                  >
-                    {menu.name}
-                  </Link>
-                </li>
-              )}
+              <li className="nav-item">
+                <Link
+                  href={slugSelector(lang, menu.url)}
+                  onClick={() => setHash(menu.url.split("/").pop() as any)}
+                  className={`nav-link block ${isActive(menu.url) ? "text-primary" : ""}`}
+                >
+                  {menu.name}
+                </Link>
+              </li>
             </React.Fragment>
           ))}
           {navigation_button.enable && (

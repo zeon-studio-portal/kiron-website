@@ -72,50 +72,52 @@ const Home = ({ params }: { params: { lang: string } }) => {
       <SeoMeta />
 
       {/* header */}
-      <section className="section bg-primary banner-section mb-24">
+      <section className="section pb-0 bg-primary banner-section mb-24">
+        {/* bg top left and right */}
         <div className="bg-top-left">
           <ImageFallback
             src="/images/banner-l-bg.svg"
-            width={255}
+            alt="banner left bg"
+            width={230}
             height={0}
             className="lg:block hidden"
           />
         </div>
-
         <div className="bg-top-right">
           <ImageFallback
             src="/images/banner-r-bg.svg"
-            width={320}
-            height={613}
+            alt="banner right bg"
+            width={270}
+            height={0}
             className="lg:block hidden"
           />
         </div>
 
         <div className="container-sm relative">
           <div className="row justify-center items-center pb-10">
-            <div className="col-12 lg:col-6 max-md:order-1 text-center lg:text-left mb-8 md:mb-16 lg:mb-0">
+            <div className="col-12 lg:col-8 max-md:order-1 text-center lg:text-left mb-8 md:mb-16 lg:mb-0">
               <h1
-                className="mb-8 md:mb-4 h1 text-[32px] xl:text-[52px] 2xl:text-[81px] font-semibold text-text"
+                className="mb-8 md:mb-4 h1 text-[24px] md:text-[32px] xl:text-[52px] 2xl:text-[81px] font-semibold text-text"
                 dangerouslySetInnerHTML={markdownify(banner.title)}
               />
-              {banner.button!.enable && (
+              {banner?.button?.enable && (
                 <Link
-                  className="btn max-md:btn-md btn-secondary"
-                  href={banner.button!.link}
+                  className="btn max-md:btn-md max-md:w-full mx-4 btn-secondary"
+                  href={banner?.button?.link}
                   rel="noopener"
                 >
                   <FaMagnifyingGlass
                     className="inline-block align-baseline h-full
                    mr-3"
                   />
-                  {banner.button!.label}
+                  {banner?.button?.label}
                 </Link>
               )}
             </div>
             {banner.image && (
               <ImageFallback
                 src={banner.image}
-                className="col-8 lg:col-4 xl:col-6 max-md:order-2 xl:scale-75 2xl:translate-x-10 2xl:scale-110"
+                className="col-8 lg:col-4 max-md:order-2 xl:scale-75 2xl:translate-x-10 2xl:scale-110"
                 width="489"
                 height="676"
                 alt="banner image"
@@ -123,28 +125,27 @@ const Home = ({ params }: { params: { lang: string } }) => {
               />
             )}
           </div>
-
-          <div className="row justify-center lg:justify-between items-center mx-auto bg-body rounded-lg lg:px-[112px] py-10 lg:py-16 absolute max-md:mx-5 lg:w-full shadow">
+          <div className="row justify-center lg:justify-between items-center bg-body rounded-lg lg:px-[112px] py-10 lg:py-16 max-md:mx-5 lg:w-full shadow mx-auto translate-y-1/2">
             <div className="col-12 lg:col-6 mb-6 lg:mb-0">
               <h5
-                className="text-[22px] font-medium lg:pr-10 lg:w-fit text-primary text-center leading-6 lg:text-left lg:border-r lg:border-primary"
+                className="text-[14px] md:text-[22px] font-medium lg:pr-10 lg:w-fit text-primary text-center leading-6 lg:text-left lg:border-r lg:border-primary"
                 dangerouslySetInnerHTML={markdownify(partner.title)}
               />
             </div>
             <div className="col-12 lg:col-6">
               <div className="flex items-baseline justify-center lg:justify-end">
                 <ImageFallback
-                  className="mr-12 w-auto h-12"
+                  className="lg:mr-12 w-auto h-12"
                   src={partner.companyLogo}
                   width={166}
-                  height={65}
+                  height={0}
                   alt="company logo"
                 />
                 <ImageFallback
                   className="w-auto h-12"
                   src={partner.partnerLogo}
                   width={209}
-                  height={73}
+                  height={0}
                   alt="partnership logo"
                 />
               </div>
@@ -158,41 +159,41 @@ const Home = ({ params }: { params: { lang: string } }) => {
         <div className="container px-6 lg:px-[140px] py-20 lg:py-[130px] bg-primary kiron-container rounded-lg">
           <div className="text-center mb-14 mx-5 lg:mx-0">
             <h2
-              className="lg:text-5xl h2 font-medium leading-tight mb-6 text-text"
+              className="text-[20px] lg:text-5xl font-medium leading-tight mb-6 text-text"
               dangerouslySetInnerHTML={markdownify(kiron.title)}
             />
             <p
-              className="lg:text-xl font-normal text-light"
+              className="text-[12px] lg:text-xl font-normal text-light"
               dangerouslySetInnerHTML={markdownify(kiron.subtitle)}
             />
           </div>
           <div className="px-4 py-5 lg:p-14 border border-border rounded-lg bg-accent mb-14">
             <h3
-              className="text-3xl font-medium leading-tight mb-10 text-text"
+              className="text-[14px] lg:text-3xl font-medium leading-tight mb-10 text-text"
               dangerouslySetInnerHTML={markdownify(kiron.discussion.title)}
             />
 
             {kiron.discussion.chat.map((chat) => (
               <p
                 key={chat}
-                className="text-2xl font-normal text-light mb-6 chat"
+                className="text-[12px] lg:text-2xl font-normal text-light mb-6 chat"
                 dangerouslySetInnerHTML={markdownify(chat)}
               />
             ))}
           </div>
           <div className="mb-14">
-            <QuestionSlider kiron={kiron} />
+            <QuestionSlider kiron={kiron} variant={undefined} />
           </div>
 
           <div className="relative">
             <input
               type="text"
               placeholder="Enter a prompt here"
-              className="w-full bg-transparent border-border lg:px-10 pl-10 pr-32 py-[21px] lg:py-[30px] rounded-lg focus:outline-none focus:ring-0 focus:shadow-none focus:border-border text-text text-2xl placeholder:text-light"
+              className="w-full bg-transparent border-border lg:px-10 p-4 lg:py-[30px] rounded-lg focus:outline-none focus:ring-0 focus:shadow-none focus:border-border text-text lg:text-2xl placeholder:text-light"
             />
             <button
               className="absolute right-2 top-1/2 transform -translate-y-1/2
- flex items-center justify-center btn btn-secondary"
+ flex items-center justify-center btn btn-secondary p-3 lg:px-9 lg:py-5 text-lg lg:text-3xl"
             >
               <FaMagnifyingGlass className="inline-block align-baseline lg:mr-3" />
               <span className="hidden lg:block">Search Here</span>
@@ -215,15 +216,15 @@ const Home = ({ params }: { params: { lang: string } }) => {
             </div>
             <div className="col-12 md:col-6">
               <h2
-                className="text-5xl font-medium leading-tight mb-4"
+                className="text-[20px] lg:text-5xl font-medium leading-tight mb-4"
                 dangerouslySetInnerHTML={markdownify(about.title)}
               />
               <p
-                className="mb-6 text-2xl leading-9"
+                className="mb-6 text-[12px] lg:text-2xl leading-9"
                 dangerouslySetInnerHTML={markdownify(about.content1)}
               />
               <p
-                className="mb-6 text-2xl leading-9"
+                className="mb-6 text-[12px] lg:text-2xl leading-9"
                 dangerouslySetInnerHTML={markdownify(about.content2)}
               />
             </div>
@@ -243,7 +244,7 @@ const Home = ({ params }: { params: { lang: string } }) => {
         <div className="container-sm">
           <div className="text-center mb-14">
             <h2
-              className="text-5xl font-medium leading-tight mb-6 text-dark"
+              className="text-[20px] lg:text-5xl px-12 lg:px-0 font-medium leading-tight mb-6 text-dark"
               dangerouslySetInnerHTML={markdownify(faq.title)}
             />
           </div>

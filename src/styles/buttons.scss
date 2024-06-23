@@ -1,5 +1,5 @@
 .btn {
-  @apply inline-block rounded-[10px] border border-transparent px-9 py-5 font-normal text-3xl capitalize transition;
+  @apply inline-block rounded-[10px] border border-transparent px-9 py-5 text-2xl font-normal capitalize transition;
 }
 
 .btn-sm {
@@ -7,7 +7,7 @@
 }
 
 .btn-md {
-  @apply px-5 py-2 text-base;
+  @apply px-4 lg:px-5 py-2 lg:py-2 text-base;
 }
 
 .btn-primary {
