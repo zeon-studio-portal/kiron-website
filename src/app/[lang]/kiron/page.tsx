@@ -28,7 +28,6 @@ const page = ({ params }: { params: { lang: string } }) => {
 
   return (
     <div className="container px-6 lg:px-[140px] py-20 lg:py-[130px] kiron-container rounded-lg">
-      <button className="mr-auto text-red-600">&times;</button>
       <div className="text-center mb-14 mx-5 lg:mx-0">
         <h2
           className="text-[20px] lg:text-5xl font-medium leading-tight mb-6"

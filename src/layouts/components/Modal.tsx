@@ -1,8 +1,9 @@
 "use client";
 
-import AccessModal from "@/app/[lang]/access/page";
+
 import { useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import AccessModal from "./AccessModal";
 
 const Modal = ({ button }: { button: any }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
