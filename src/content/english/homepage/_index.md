@@ -8,7 +8,7 @@ banner:
     link: "#"
 
 partner:
-  title: "Implemented by SecDev with <br> support of Global Affairs Canada"
+  title: "Implemented by SecDev with support of Global Affairs Canada"
   companyLogo: "/images/company.png"
   partnerLogo: "/images/partnership.png"
 

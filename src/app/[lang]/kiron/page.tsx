@@ -28,6 +28,7 @@ const page = ({ params }: { params: { lang: string } }) => {
 
   return (
     <div className="container px-6 lg:px-[140px] py-20 lg:py-[130px] kiron-container rounded-lg">
+      <button className="mr-auto text-red-600">&times;</button>
       <div className="text-center mb-14 mx-5 lg:mx-0">
         <h2
           className="text-[20px] lg:text-5xl font-medium leading-tight mb-6"
@@ -62,10 +63,7 @@ const page = ({ params }: { params: { lang: string } }) => {
           placeholder="Enter a prompt here"
           className="w-full bg-transparent border-border-dark lg:px-10 p-4 lg:py-[30px] rounded-lg focus:outline-none focus:ring-0 focus:shadow-none focus:border-border-dark text-text lg:text-2xl placeholder:text-dark-light"
         />
-        <button
-          className="absolute right-2 top-1/2 transform -translate-y-1/2
-  flex items-center justify-center btn btn-primary p-3 lg:px-9 lg:py-5 text-lg lg:text-3xl"
-        >
+        <button className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center justify-center btn btn-primary p-3 lg:px-9 lg:py-5 text-lg lg:text-3xl">
           <FaMagnifyingGlass className="inline-block align-baseline lg:mr-3" />
           <span className="hidden lg:block">Search Here</span>
         </button>

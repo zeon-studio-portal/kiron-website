@@ -1,4 +1,5 @@
 import CallToAction from "@/components/CallToAction";
+import Modal from "@/components/Modal";
 import Publication from "@/components/Publication";
 import QuestionSlider from "@/components/QuestionSlider";
 import config from "@/config/config.json";
@@ -10,7 +11,6 @@ import { markdownify } from "@/lib/utils/textConverter";
 import SeoMeta from "@/partials/SeoMeta";
 import Accordion from "@/shortcodes/Accordion";
 import { Button } from "@/types";
-import Link from "next/link";
 import path from "path";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import "swiper/css";
@@ -93,31 +93,19 @@ const Home = ({ params }: { params: { lang: string } }) => {
           />
         </div>
 
-        <div className="container-sm relative">
+        <div className="container-sm relative z-30">
           <div className="row justify-center items-center pb-10">
             <div className="col-12 lg:col-8 max-md:order-1 text-center lg:text-left mb-8 md:mb-16 lg:mb-0">
               <h1
-                className="mb-8 md:mb-4 h1 text-[24px] md:text-[32px] xl:text-[52px] 2xl:text-[81px] font-semibold text-text"
+                className="mb-8 md:mb-4 h1 text-[28px] md:text-[52px] lg:text-[52px] xl:text-[66px] 2xl:text-[81px] font-semibold text-text px-[5%] xl:px-0"
                 dangerouslySetInnerHTML={markdownify(banner.title)}
               />
-              {banner?.button?.enable && (
-                <Link
-                  className="btn max-md:btn-md max-md:w-full mx-4 btn-secondary"
-                  href={banner?.button?.link}
-                  rel="noopener"
-                >
-                  <FaMagnifyingGlass
-                    className="inline-block align-baseline h-full
-                   mr-3"
-                  />
-                  {banner?.button?.label}
-                </Link>
-              )}
+              {banner?.button?.enable && <Modal button={banner.button} />}
             </div>
             {banner.image && (
               <ImageFallback
                 src={banner.image}
-                className="col-8 lg:col-4 max-md:order-2 xl:scale-75 2xl:translate-x-10 2xl:scale-110"
+                className="col-8 lg:col-4 max-md:order-2 xl:scale-75 lg:-translate-x-5 2xl:translate-x-10 2xl:scale-110"
                 width="489"
                 height="676"
                 alt="banner image"
@@ -125,15 +113,15 @@ const Home = ({ params }: { params: { lang: string } }) => {
               />
             )}
           </div>
-          <div className="row justify-center lg:justify-between items-center bg-body rounded-lg lg:px-[112px] py-10 lg:py-16 max-md:mx-5 lg:w-full shadow mx-auto translate-y-1/2">
-            <div className="col-12 lg:col-6 mb-6 lg:mb-0">
+          <div className="row justify-center lg:justify-between items-center bg-body rounded-lg md:px-40 lg:px-[112px] py-10 lg:py-16 max-md:mx-5 lg:w-full shadow mx-auto translate-y-1/2">
+            <div className="col-11 lg:col-6 mb-6 lg:mb-0">
               <h5
                 className="text-[14px] md:text-[22px] font-medium lg:pr-10 lg:w-fit text-primary text-center leading-6 lg:text-left lg:border-r lg:border-primary"
                 dangerouslySetInnerHTML={markdownify(partner.title)}
               />
             </div>
-            <div className="col-12 lg:col-6">
-              <div className="flex items-baseline justify-center lg:justify-end">
+            <div className="col-11 lg:col-6">
+              <div className="flex items-baseline justify-between lg:justify-end">
                 <ImageFallback
                   className="lg:mr-12 w-auto h-12"
                   src={partner.companyLogo}
@@ -191,10 +179,7 @@ const Home = ({ params }: { params: { lang: string } }) => {
               placeholder="Enter a prompt here"
               className="w-full bg-transparent border-border lg:px-10 p-4 lg:py-[30px] rounded-lg focus:outline-none focus:ring-0 focus:shadow-none focus:border-border text-text lg:text-2xl placeholder:text-light"
             />
-            <button
-              className="absolute right-2 top-1/2 transform -translate-y-1/2
- flex items-center justify-center btn btn-secondary p-3 lg:px-9 lg:py-5 text-lg lg:text-3xl"
-            >
+            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center justify-center btn btn-secondary p-3 lg:px-9 lg:py-5 text-lg lg:text-3xl">
               <FaMagnifyingGlass className="inline-block align-baseline lg:mr-3" />
               <span className="hidden lg:block">Search Here</span>
             </button>

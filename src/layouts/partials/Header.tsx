@@ -38,7 +38,7 @@ const Header = ({
 
   return (
     <header
-      className={`header z-30 ${settings.sticky_header ? "sticky top-0" : ""}`}
+      className={`header z-40  ${settings.sticky_header ? "sticky top-0" : ""}`}
     >
       <nav className="navbar max-md:px-5 container">
         {/* logo */}

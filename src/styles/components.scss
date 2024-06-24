@@ -23,7 +23,7 @@ br {
   @apply relative bg-[url('/images/banner-bg-phone.svg')] lg:bg-[url('/images/banner-bg.svg')]  bg-cover bg-top bg-no-repeat;
 
   .bg-top-left .bg-top-right {
-    @apply bg-no-repeat bg-contain w-full h-full z-10;
+    @apply bg-no-repeat bg-contain w-full h-full;
   }
   .bg-top-left {
     @apply absolute top-0 left-0;
