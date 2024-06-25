@@ -21,9 +21,8 @@ const QuestionSection = ({
     e.preventDefault();
 
     const response = await fetch(
-      "http://ec2-3-86-49-38.compute-1.amazonaws.com/secret",
+      `${process.env.NEXT_PUBLIC_KIRON_API}/secret`,
       {
-        referrerPolicy: "unsafe-url",
         method: "POST",
         headers: {
           Authorization: "Bearer abc123",
