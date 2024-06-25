@@ -6,7 +6,7 @@ import { getActiveLanguages } from "@/lib/languageParser";
 import { slugSelector } from "@/lib/utils/slugSelector";
 import { INavigationLink } from "@/types";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+
 import React, { useEffect, useState } from "react";
 
 const Header = ({
@@ -19,26 +19,26 @@ const Header = ({
   const activeLanguages = getActiveLanguages();
   const { main }: { main: INavigationLink[] } = menu;
   const { navigation_button, settings } = config;
-  const pathname = usePathname();
 
   const [hash, setHash] = useState("");
 
-  const [navLinks, setNavLinks] = useState<HTMLElement[]>([]);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [hash]);
 
   useEffect(() => {
     setHash(window.location.hash);
-    setNavLinks(document.querySelectorAll(".nav-link") as any);
   }, []);
 
   const isActive = (url: string) => {
     const lastSegment = url.split("/").pop() || "";
 
-    return pathname === url || pathname === `${url}/` || hash === lastSegment;
+    return hash === url || hash === `${url}/` || hash === lastSegment;
   };
 
   return (
     <header
-      className={`header z-40  ${settings.sticky_header ? "sticky top-0" : ""}`}
+      className={`header z-40 ${settings.sticky_header && "sticky top-0"}`}
     >
       <nav className="navbar max-md:px-5 container">
         {/* logo */}
@@ -82,7 +82,11 @@ const Header = ({
               <li className="nav-item">
                 <Link
                   href={slugSelector(lang, menu.url)}
-                  onClick={() => setHash(menu.url.split("/").pop() as any)}
+                  onClick={() =>
+                    menu.url === "/"
+                      ? setHash("/")
+                      : setHash(menu.url.split("/").pop() as any)
+                  }
                   className={`nav-link block ${isActive(menu.url) ? "text-primary" : ""}`}
                 >
                   {menu.name}
