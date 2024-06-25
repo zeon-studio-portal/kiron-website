@@ -45,6 +45,7 @@ const Publication = ({
         filterLists.forEach((list) => list.classList.remove("selected"));
         list.classList.add("selected");
         const keyword = list.getAttribute("data-target");
+
         shuffleInstance.filter(keyword!);
       };
 
@@ -86,7 +87,7 @@ const Publication = ({
             <div
               key={i}
               className="col-12 md:col-6 lg:col-4 shuffle-item"
-              data-groups={`["${publication.frontmatter.categories}"]`}
+              data-groups={`["All", "${publication.frontmatter.categories}"]`}
             >
               <div className="flex flex-col justify-between h-full p-4 lg:p-8 bg-body rounded-lg">
                 <div>

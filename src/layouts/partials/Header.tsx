@@ -23,10 +23,6 @@ const Header = ({
   const [hash, setHash] = useState("");
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [hash]);
-
-  useEffect(() => {
     setHash(window.location.hash);
   }, []);
 

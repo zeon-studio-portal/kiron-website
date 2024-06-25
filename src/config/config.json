@@ -26,6 +26,7 @@
   "category": {
     "enable": true,
     "categories": [
+      "All",
       "Flashnotes",
       "Quarterly Report",
       "Monthly Report",
