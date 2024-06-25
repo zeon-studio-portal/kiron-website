@@ -47,13 +47,6 @@ br {
   .chat:last-child {
     @apply mb-0;
   }
-
-  .light-questions {
-    @apply border-[#C6C6C6] bg-body-light;
-    p {
-      @apply text-dark;
-    }
-  }
 }
 
 // form style

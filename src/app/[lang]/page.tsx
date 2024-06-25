@@ -1,7 +1,7 @@
 import CallToAction from "@/components/CallToAction";
 import Modal from "@/components/Modal";
 import Publication from "@/components/Publication";
-import QuestionSlider from "@/components/QuestionSlider";
+import QuestionSection from "@/components/QuestionSection";
 import config from "@/config/config.json";
 import languages from "@/config/language.json";
 import ImageFallback from "@/helpers/ImageFallback";
@@ -12,7 +12,6 @@ import SeoMeta from "@/partials/SeoMeta";
 import Accordion from "@/shortcodes/Accordion";
 import { Button } from "@/types";
 import path from "path";
-import { FaMagnifyingGlass } from "react-icons/fa6";
 import "swiper/css";
 
 // remove dynamicParams
@@ -169,21 +168,8 @@ const Home = ({ params }: { params: { lang: string } }) => {
               />
             ))}
           </div>
-          <div className="mb-14">
-            <QuestionSlider kiron={kiron} variant={undefined} />
-          </div>
 
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Enter a prompt here"
-              className="w-full bg-transparent border-border lg:px-10 p-4 lg:py-[30px] rounded-lg focus:outline-none focus:ring-0 focus:shadow-none focus:border-border text-text lg:text-2xl placeholder:text-light"
-            />
-            <button className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center justify-center btn btn-secondary p-3 lg:px-9 lg:py-5 text-lg lg:text-3xl">
-              <FaMagnifyingGlass className="inline-block align-baseline lg:mr-3" />
-              <span className="hidden lg:block">Search Here</span>
-            </button>
-          </div>
+          <QuestionSection kiron={kiron} variant={undefined} />
         </div>
       </section>
 
