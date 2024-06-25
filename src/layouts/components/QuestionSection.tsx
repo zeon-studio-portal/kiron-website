@@ -23,6 +23,7 @@ const QuestionSection = ({
     const response = await fetch(
       "http://ec2-3-86-49-38.compute-1.amazonaws.com/secret",
       {
+        referrerPolicy: "unsafe-url",
         method: "POST",
         headers: {
           Authorization: "Bearer abc123",
