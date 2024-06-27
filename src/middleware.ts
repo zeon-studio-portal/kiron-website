@@ -45,23 +45,9 @@ export function middleware(request: NextRequest) {
       );
     }
   }
-
-  // Check for authentication on protected routes
-  const isAuthenticated = request.cookies.get("isAuthenticated");
-  const protectedRoutes = ["/kiron"];
-
-  if (protectedRoutes.includes(pathname) && !isAuthenticated) {
-    const url = new URL("/", request.url);
-    return NextResponse.redirect(url);
-  }
-
-  return NextResponse.next();
 }
 
 // Middleware configuration to match paths while ignoring specific directories
 export const config = {
-  matcher: [
-    "/((?!api|_next/static|_next/image|images|favicon.ico).*)",
-    "/kiron",
-  ],
+  matcher: ["/((?!api|_next/static|_next/image|images|favicon.ico).*)"],
 };
