@@ -1,6 +1,8 @@
 import ImageFallback from "@/helpers/ImageFallback";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import { FaXmark } from "react-icons/fa6";
+import { useAuth } from "../context/AuthContext";
 
 const AccessModal = ({
   isModalVisible,
@@ -11,17 +13,21 @@ const AccessModal = ({
 }) => {
   if (!isModalVisible) return null;
   const router = useRouter();
+  const { isAuthenticated, setIsAuthenticated } = useAuth();
+
+  const wrongKey = () => toast.error("Incorrect secret key");
 
   const submitKey = (e: any) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const secret = formData.get("secret");
-    if (secret === "abc123") {
+    if (secret === process.env.NEXT_PUBLIC_SECRET_KEY) {
       handleCloseModal();
-      document.cookie = "isAuthenticated=true; path=/";
+      localStorage.setItem("isAuthenticated", "true");
+      setIsAuthenticated(true);
       router.push("/kiron");
     } else {
-      alert("Incorrect secret key");
+      wrongKey();
     }
   };
 

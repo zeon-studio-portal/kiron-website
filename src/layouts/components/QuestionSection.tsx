@@ -14,7 +14,48 @@ const QuestionSection = ({
   variant: any | undefined;
 }) => {
   const [search, setSearch] = useState("");
-  const [message, setMessage] = useState<any[] | undefined>([]);
+  const [message, setMessage] = useState<any[] | undefined>([
+    {
+      role: "admin",
+      content: "What are the most common cyber scams in Bangladesh?",
+    },
+    {
+      role: "user",
+      content: "What are the most common cyber scams in Bangladesh?",
+    },
+    {
+      role: "user",
+      content: "What are the most common cyber scams in Bangladesh?",
+    },
+    {
+      role: "admin",
+      content: "What are the most common cyber scams in Bangladesh?",
+    },
+    {
+      role: "user",
+      content: "What are the most common cyber scams in Bangladesh?",
+    },
+    {
+      role: "admin",
+      content: "What are the most common cyber scams in Bangladesh?",
+    },
+    {
+      role: "user",
+      content: "What are the most common cyber scams in Bangladesh?",
+    },
+    {
+      role: "user",
+      content: "What are the most common cyber scams in Bangladesh?",
+    },
+    {
+      role: "user",
+      content: "What are the most common cyber scams in Bangladesh?",
+    },
+    {
+      role: "assistant",
+      content: "A lots of things happening in bangladesh",
+    },
+  ]);
   const chatBoxRef = useRef<HTMLDivElement>(null);
 
   const askKiron = async (e: { preventDefault: () => void }) => {
@@ -90,12 +131,10 @@ const QuestionSection = ({
           {message?.map((msg, index) => (
             <p
               key={index}
-              className={`message text-[14px] lg:text-2xl font-medium ${variant ? "text-dark" : "text-text"} px-4 py-2`}
+              className={`${(msg as any).role === "user" ? "text-right text-green-500" : "text-left text-red-500"} message text-[14px] lg:text-2xl font-medium px-4 py-2`}
             >
-              <span className="uppercase">{(msg as any).role}</span> :{" "}
-              <span className={`${variant ? "text-dark-light" : "text-light"}`}>
-                {(msg as any).content}
-              </span>
+              {/* <span className="uppercase ">{(msg as any).role}</span> :{" "} */}
+              <span>{(msg as any).content}</span>
             </p>
           ))}
         </div>
