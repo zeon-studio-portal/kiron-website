@@ -34,9 +34,23 @@ export function middleware(request: NextRequest) {
       ),
     );
   }
+
+  // Redirect if there is no secret
+  const isAuthenticated = request.cookies.get("isAuthenticated");
+
+  const protectedRoutes = ["/kiron"];
+
+  if (protectedRoutes.includes(pathname) && !isAuthenticated) {
+    const url = new URL("/", request.url);
+    return NextResponse.redirect(url);
+  }
+  return NextResponse.next();
 }
 
 export const config = {
   // Matcher ignoring `/_next/` and `/api/`
-  matcher: ["/((?!api|_next/static|_next/image|images|favicon.ico).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|images|favicon.ico).*)",
+    "/kiron",
+  ],
 };

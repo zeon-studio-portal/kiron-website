@@ -36,6 +36,9 @@ const QuestionSection = ({
         ]),
       },
     );
+    if (response.status === 401) {
+      // do your task
+    }
     const data = await response.json();
     setSearch("");
     setMessage((prevMessages) => [...(prevMessages || []), ...data]);

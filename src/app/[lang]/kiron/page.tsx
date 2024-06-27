@@ -25,7 +25,7 @@ const page = ({ params }: { params: { lang: string } }) => {
   } = frontmatter;
 
   return (
-    <div className="container px-6 lg:px-[140px] py-[50px] kiron-container rounded-lg">
+    <div className="container px-6 p-24 xl:px-[140px] py-[50px] kiron-container rounded-lg">
       <div className="text-center mb-14 mx-5 lg:mx-0">
         <h2
           className="text-[20px] lg:text-5xl font-medium leading-tight mb-6"

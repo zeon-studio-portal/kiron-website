@@ -8,9 +8,9 @@
 
 // container
 .container {
-  @apply mx-auto max-w-[95%] lg:max-w-[1587.5px];
+  @apply mx-auto max-w-[95%] 2xl:max-w-[1587.5px];
   &-sm {
-    @apply mx-auto max-w-[95%] lg:max-w-[1277.5px];
+    @apply mx-auto max-w-[95%] 2xl:max-w-[1277.5px];
   }
 }
 
@@ -112,14 +112,18 @@ br {
   }
 }
 
-// swiper pagination
-.swiper-pagination {
-  @apply mt-9 flex items-center justify-center space-x-2 text-center;
-  &-bullet {
-    @apply h-2.5 w-2.5 rounded-full bg-theme-light opacity-100;
+// swiper
+.swiper-wrapper {
+  @apply items-stretch #{!important};
 
-    &-active {
-      @apply h-4 w-4 bg-primary;
+  &-pagination {
+    @apply mt-9 flex items-center justify-center space-x-2 text-center;
+    &-bullet {
+      @apply h-2.5 w-2.5 rounded-full bg-theme-light opacity-100;
+
+      &-active {
+        @apply h-4 w-4 bg-primary;
+      }
     }
   }
 }

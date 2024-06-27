@@ -1,6 +1,7 @@
 "use client";
 
 import Logo from "@/components/Logo";
+import Modal from "@/components/Modal";
 import config from "@/config/config.json";
 import { getActiveLanguages } from "@/lib/languageParser";
 import { slugSelector } from "@/lib/utils/slugSelector";
@@ -92,23 +93,21 @@ const Header = ({
           ))}
           {navigation_button.enable && (
             <li className="mt-4 inline-block lg:hidden">
-              <Link
-                className="btn btn-primary btn-sm"
-                href={navigation_button.link}
-              >
-                {navigation_button.label}
-              </Link>
+              <Modal
+                button={navigation_button}
+                className="btn btn-sm btn-primary"
+                icon={false}
+              />
             </li>
           )}
         </ul>
-        <div className="order-1 ml-auto flex items-center md:order-2 lg:ml-0">
+        <div className="hidden order-1 ml-auto lg:flex items-center md:order-2 lg:ml-0">
           {navigation_button.enable && (
-            <Link
-              className="btn btn-primary px-[26px] py-[13px] hidden lg:inline-block"
-              href={navigation_button.link}
-            >
-              {navigation_button.label}
-            </Link>
+            <Modal
+              button={navigation_button}
+              className="btn btn-lg btn-primary"
+              icon={false}
+            />
           )}
         </div>
       </nav>

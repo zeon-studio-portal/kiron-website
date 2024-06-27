@@ -96,15 +96,15 @@ const Home = ({ params }: { params: { lang: string } }) => {
           <div className="row justify-center items-center pb-10">
             <div className="col-12 lg:col-8 max-md:order-1 text-center lg:text-left mb-8 md:mb-16 lg:mb-0">
               <h1
-                className="mb-8 md:mb-4 h1 text-[28px] md:text-[52px] lg:text-[52px] xl:text-[66px] 2xl:text-[81px] font-semibold text-text px-[5%] xl:px-0"
+                className="mb-8 md:mb-4 h1 text-[28px] md:text-[52px] lg:text-[52px] xl:text-[72px] 2xl:text-[81px] font-semibold text-text px-[5%] xl:px-0"
                 dangerouslySetInnerHTML={markdownify(banner.title)}
               />
-              {banner?.button?.enable && <Modal button={banner.button} />}
+              {banner?.button?.enable && <Modal button={banner.button} className="btn btn-lg btn-secondary" icon={true}/>}
             </div>
             {banner.image && (
               <ImageFallback
                 src={banner.image}
-                className="col-8 lg:col-4 max-md:order-2 xl:scale-75 lg:-translate-x-5 2xl:translate-x-10 2xl:scale-110"
+                className="col-8 lg:col-4 max-md:order-2 lg:scale-125 xl:scale-110 2xl:scale-110 lg:-translate-x-10 2xl:translate-x-10"
                 width="489"
                 height="676"
                 alt="banner image"
@@ -143,8 +143,8 @@ const Home = ({ params }: { params: { lang: string } }) => {
 
       {/* kiron */}
       <section id="kiron" className="section">
-        <div className="container px-6 lg:px-[140px] py-20 lg:py-[130px] bg-primary kiron-container rounded-lg">
-          <div className="text-center mb-14 mx-5 lg:mx-0">
+        <div className="container px-6 lg:p-24 xl:px-[140px] py-20 xl:py-[130px] bg-primary kiron-container rounded-lg">
+          <div className="text-center mb-14 mx-5 lg:mx-0">  
             <h2
               className="text-[20px] lg:text-5xl font-medium leading-tight mb-6 text-text"
               dangerouslySetInnerHTML={markdownify(kiron.title)}

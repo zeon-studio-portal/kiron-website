@@ -57,7 +57,7 @@ const Publication = ({
 
   return (
     <section id="publications" className="section">
-      <div className="container px-4 lg:px-[140px] py-12 lg:py-[130px] bg-primary kiron-container rounded-lg">
+      <div className="container px-4 lg:p-24   xl:px-[140px] py-12 xl:py-[130px] bg-primary kiron-container rounded-lg">
         <div className="text-center mb-14">
           <h2
             className="text-[20px] lg:text-5xl font-medium leading-tight mb-6 text-text"
@@ -89,7 +89,7 @@ const Publication = ({
               className="col-12 md:col-6 lg:col-4 shuffle-item"
               data-groups={`["All", "${publication.frontmatter.categories}"]`}
             >
-              <div className="flex flex-col justify-between h-full p-4 lg:p-8 bg-body rounded-lg">
+              <div className="flex flex-col justify-between h-full p-4 xl:p-8 bg-body rounded-lg">
                 <div>
                   <ImageFallback
                     className="rounded-lg mb-6 w-full"
