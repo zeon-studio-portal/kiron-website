@@ -31,7 +31,7 @@ const Footer = ({
           <div className="mb-8 lg:col-5 lg:mb-0">
             <ul className="text-xs lg:text-xl text-center">
               {menu.footer.map((menu) => (
-                <li className="ml-3 inline-block" key={menu.name}>
+                <li className="footer-links inline-block" key={menu.name}>
                   <Link href={slugSelector(lang, menu.url)}>{menu.name}</Link>
                 </li>
               ))}

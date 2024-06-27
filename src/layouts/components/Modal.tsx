@@ -1,7 +1,9 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { FaMagnifyingGlass } from "react-icons/fa6";
+import { useAuth } from "../context/AuthContext";
 import AccessModal from "./AccessModal";
 
 const Modal = ({
@@ -13,10 +15,16 @@ const Modal = ({
   className: any;
   icon: boolean;
 }) => {
+  const router = useRouter();
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const { isAuthenticated } = useAuth();
 
   const handleOpenModal = () => {
-    setIsModalVisible(true);
+    if (isAuthenticated) {
+      router.push("/kiron");
+    } else {
+      setIsModalVisible(true);
+    }
   };
 
   const handleCloseModal = () => {

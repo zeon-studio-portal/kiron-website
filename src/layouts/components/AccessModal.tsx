@@ -13,7 +13,7 @@ const AccessModal = ({
 }) => {
   if (!isModalVisible) return null;
   const router = useRouter();
-  const { isAuthenticated, setIsAuthenticated } = useAuth();
+  const { setIsAuthenticated } = useAuth();
 
   const wrongKey = () => toast.error("Incorrect secret key");
 
