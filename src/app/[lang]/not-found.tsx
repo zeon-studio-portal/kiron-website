@@ -1,9 +1,6 @@
 "use client";
 
-import TwSizeIndicator from "@/helpers/TwSizeIndicator";
 import { useTranslate } from "@/hooks/useTranslate";
-import Footer from "@/partials/Footer";
-import Header from "@/partials/Header";
 import Link from "next/link";
 
 export default function NotFound() {
@@ -17,30 +14,21 @@ export default function NotFound() {
   } = useTranslate();
 
   return (
-    <>
-      <TwSizeIndicator />
-      <Header lang={lang} menu={{ main: main || [] }} />
-      <main>
-        <section className="section-sm text-center">
-          <div className="container">
-            <div className="row justify-center">
-              <div className="sm:col-10 md:col-8 lg:col-6">
-                <span className="text-[8rem] block font-bold text-dark ">
-                  404
-                </span>
-                <h1 className="h2 mb-4">{page_not_found}</h1>
-                <div className="content">
-                  <p>{page_not_found_content}</p>
-                </div>
-                <Link href="/" className="btn btn-primary mt-8">
-                  {back_to_home}
-                </Link>
-              </div>
+    <section className="section-sm text-center">
+      <div className="container">
+        <div className="row justify-center">
+          <div className="sm:col-10 md:col-8 lg:col-6">
+            <span className="text-[8rem] block font-bold text-dark ">404</span>
+            <h1 className="h2 mb-4">{page_not_found}</h1>
+            <div className="content">
+              <p>{page_not_found_content}</p>
             </div>
+            <Link href="/" className="btn btn-primary mt-8">
+              {back_to_home}
+            </Link>
           </div>
-        </section>
-      </main>
-      <Footer lang={lang} menu={{ footer: footer || [] }} />
-    </>
+        </div>
+      </div>
+    </section>
   );
 }

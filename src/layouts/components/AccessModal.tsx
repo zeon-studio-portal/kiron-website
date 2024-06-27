@@ -21,7 +21,7 @@ const AccessModal = ({
     e.preventDefault();
     const formData = new FormData(e.target);
     const secret = formData.get("secret");
-    if (secret === process.env.NEXT_PUBLIC_SECRET_KEY) {
+    if (secret === process.env.NEXT_PUBLIC_KIRON_SECRET_KEY) {
       handleCloseModal();
       localStorage.setItem("isAuthenticated", "true");
       setIsAuthenticated(true);
