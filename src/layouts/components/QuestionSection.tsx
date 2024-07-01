@@ -2,6 +2,7 @@
 
 import { markdownify } from "@/lib/utils/textConverter";
 import { useEffect, useRef, useState } from "react";
+import toast from "react-hot-toast";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -58,28 +59,43 @@ const QuestionSection = ({
   ]);
   const chatBoxRef = useRef<HTMLDivElement>(null);
 
+  const errorAlert = () =>
+    toast.error(
+      "There was a problem with the request. Please try again later.",
+    );
+
   const askKiron = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_KIRON_API}/secret`,
-      {
-        method: "POST",
-        headers: {
-          Authorization: "Bearer abc123",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify([
-          {
-            role: "user",
-            content: search,
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_KIRON_API}/secret`,
+        {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer abc123",
+            "Content-Type": "application/json",
           },
-        ]),
-      },
-    );
-    const data = await response.json();
-    setSearch("");
-    setMessage((prevMessages) => [...(prevMessages || []), ...data]);
+          body: JSON.stringify([
+            {
+              role: "user",
+              content: search,
+            },
+          ]),
+        },
+      );
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      setSearch("");
+      setMessage((prevMessages) => [...(prevMessages || []), ...data]);
+    } catch (error) {
+      errorAlert();
+      console.error("Error:", error);
+    }
   };
 
   useEffect(() => {
@@ -107,11 +123,11 @@ const QuestionSection = ({
         }}
       >
         {kiron.questions.map((q: any, index: number) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} className="!h-auto">
             <div
               key={q}
               onClick={setSearch.bind(this, q)}
-              className={`${variant ? "bg-body-light text-dark" : "bg-accent text-text"} border border-border-dark rounded-lg cursor-pointer`}
+              className={`!min-h-full ${variant ? "bg-body-light text-dark" : "bg-accent text-text"} border border-border-dark rounded-lg cursor-pointer`}
             >
               <p
                 className="text-[14px] lg:text-2xl font-medium p-8 xl:p-12"

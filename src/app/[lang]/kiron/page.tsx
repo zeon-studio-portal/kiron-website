@@ -1,6 +1,7 @@
 import Kiron from "@/components/Kiron";
 import languages from "@/config/language.json";
 import { getListPage } from "@/lib/contentParser";
+import SeoMeta from "@/partials/SeoMeta";
 import path from "path";
 
 const page = ({ params }: { params: { lang: string } }) => {
@@ -26,6 +27,7 @@ const page = ({ params }: { params: { lang: string } }) => {
 
   return (
     <>
+      <SeoMeta title="Kiron AI" />
       <Kiron kiron={kiron} />
     </>
   );
