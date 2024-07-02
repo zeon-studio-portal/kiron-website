@@ -9,7 +9,7 @@
 
 1. **Clone the Repository:**
 
-   Open your terminal and navigate to the directory where you want to clone the Next.js project.  Use the `git clone` command followed by the URL of the GitHub repository. For example, to clone a repository named `my-nextjs-app` from user `johndoe`, you would run:
+   Open your terminal and navigate to the directory where you want to clone the Next.js project.  Use the `git clone` command followed by the URL of the GitHub repository. For example, to clone a repository named `kiron-website` from user `zeon-studio-portal`, you would run:
 
    ```bash
    git clone https://github.com/zeon-studio-portal/kiron-website.git
