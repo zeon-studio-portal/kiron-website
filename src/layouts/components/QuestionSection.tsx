@@ -15,48 +15,7 @@ const QuestionSection = ({
   variant: any | undefined;
 }) => {
   const [search, setSearch] = useState("");
-  const [message, setMessage] = useState<any[] | undefined>([
-    {
-      role: "admin",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "user",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "user",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "admin",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "user",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "admin",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "user",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "user",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "user",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "assistant",
-      content: "A lots of things happening in bangladesh",
-    },
-  ]);
+  const [message, setMessage] = useState<any[] | undefined>([]);
   const chatBoxRef = useRef<HTMLDivElement>(null);
 
   const errorAlert = () =>
@@ -141,18 +100,20 @@ const QuestionSection = ({
       {message?.length! > 0 && (
         <div
           id="chatBox"
-          ref={chatBoxRef}
-          className={`${variant ? "border-[#C6C6C6] bg-body-light" : "border-border-dark bg-accent "} border  rounded-lg mb-6 max-w-[1300px] max-h-[300px] overflow-y-scroll`}
+          className={`${variant ? "border border-[#C6C6C6] bg-body-light" : "border-border-dark bg-accent "} rounded-lg py-5 pl-5 pr-2 mb-6`}
         >
-          {message?.map((msg, index) => (
-            <p
-              key={index}
-              className={`${(msg as any).role === "user" ? "text-right text-green-500" : "text-left text-red-500"} message text-[14px] lg:text-2xl font-medium px-4 py-2`}
-            >
-              {/* <span className="uppercase ">{(msg as any).role}</span> :{" "} */}
-              <span>{(msg as any).content}</span>
-            </p>
-          ))}
+          <div
+            ref={chatBoxRef}
+            className={`max-w-[1300px] max-h-[500px] overflow-y-scroll`}
+          >
+            {message?.map((msg, index) => (
+              <div
+                key={index}
+                className={`${(msg as any).role === "user" && "p-5 bg-[#e6e6e6] rounded-lg w-3/4 ml-auto"} message text-dark text-[14px] lg:text-2xl font-medium px-4 py-2`}
+                dangerouslySetInnerHTML={markdownify(msg.content, true)}
+              />
+            ))}
+          </div>
         </div>
       )}
 
