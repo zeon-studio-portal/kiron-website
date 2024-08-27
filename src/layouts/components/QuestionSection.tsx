@@ -17,6 +17,7 @@ const QuestionSection = ({
   const [search, setSearch] = useState("");
   const [message, setMessage] = useState<any[] | undefined>([]);
   const chatBoxRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const errorAlert = () =>
     toast.error(
@@ -25,6 +26,7 @@ const QuestionSection = ({
 
   const askKiron = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const response = await fetch(
@@ -54,6 +56,8 @@ const QuestionSection = ({
     } catch (error) {
       errorAlert();
       console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -104,12 +108,12 @@ const QuestionSection = ({
         >
           <div
             ref={chatBoxRef}
-            className={`max-w-[1300px] max-h-[500px] overflow-y-scroll`}
+            className={`max-w-[1300px] max-h-[500px] overflow-y-auto`}
           >
             {message?.map((msg, index) => (
               <div
                 key={index}
-                className={`${(msg as any).role === "user" && "p-5 bg-[#e6e6e6] rounded-lg w-3/4 ml-auto"} message text-dark text-[14px] lg:text-2xl font-medium px-4 py-2`}
+                className={`${(msg as any).role === "user" && "p-5 bg-[#e6e6e6] rounded-lg w-3/4 ml-auto"} message text-dark text-[14px] lg:text-2xl px-4 py-2`}
                 dangerouslySetInnerHTML={markdownify(msg.content, true)}
               />
             ))}
@@ -124,13 +128,37 @@ const QuestionSection = ({
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Enter a prompt here"
           className={`w-full bg-transparent ${variant ? "border-border-dark focus:border-border-dark text-dark placeholder:text-dark-light" : "border-border focus:border-border text-text placeholder:text-light"} p-4 pr-16 lg:px-10 lg:pr-80 lg:py-[30px] rounded-lg focus:outline-none focus:ring-0 focus:shadow-none lg:text-2xl`}
+          disabled={isLoading}
         />
         <button
           className={`absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center justify-center btn ${variant ? "btn-primary" : "btn-secondary"}  p-3 lg:px-9 lg:py-5 text-lg lg:text-3xl`}
           type="submit"
+          disabled={!search || isLoading}
         >
-          <FaMagnifyingGlass className="inline-block align-baseline lg:mr-3" />
-          <span className="hidden lg:block">Search Here</span>
+          {isLoading ? (
+            <div className="flex items-baseline">
+              <p className="mr-2">Searching</p>
+              <div className="flex space-x-1">
+                <div
+                  className="w-2 h-2 bg-white rounded-full animate-bounce"
+                  style={{ animationDelay: "0s" }}
+                ></div>
+                <div
+                  className="w-2 h-2 bg-white rounded-full animate-bounce"
+                  style={{ animationDelay: "0.2s" }}
+                ></div>
+                <div
+                  className="w-2 h-2 bg-white rounded-full animate-bounce"
+                  style={{ animationDelay: "0.4s" }}
+                ></div>
+              </div>
+            </div>
+          ) : (
+            <>
+              <FaMagnifyingGlass className="inline-block align-baseline lg:mr-3" />
+              <span className="hidden lg:block">Search Here</span>
+            </>
+          )}
         </button>
       </form>
     </>
