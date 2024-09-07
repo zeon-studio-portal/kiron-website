@@ -15,49 +15,9 @@ const QuestionSection = ({
   variant: any | undefined;
 }) => {
   const [search, setSearch] = useState("");
-  const [message, setMessage] = useState<any[] | undefined>([
-    {
-      role: "admin",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "user",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "user",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "admin",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "user",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "admin",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "user",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "user",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "user",
-      content: "What are the most common cyber scams in Bangladesh?",
-    },
-    {
-      role: "assistant",
-      content: "A lots of things happening in bangladesh",
-    },
-  ]);
+  const [message, setMessage] = useState<any[] | undefined>([]);
   const chatBoxRef = useRef<HTMLDivElement>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const errorAlert = () =>
     toast.error(
@@ -66,6 +26,7 @@ const QuestionSection = ({
 
   const askKiron = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       const response = await fetch(
@@ -95,6 +56,8 @@ const QuestionSection = ({
     } catch (error) {
       errorAlert();
       console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -141,18 +104,20 @@ const QuestionSection = ({
       {message?.length! > 0 && (
         <div
           id="chatBox"
-          ref={chatBoxRef}
-          className={`${variant ? "border-[#C6C6C6] bg-body-light" : "border-border-dark bg-accent "} border  rounded-lg mb-6 max-w-[1300px] max-h-[300px] overflow-y-scroll`}
+          className={`${variant ? "border border-[#C6C6C6] bg-body-light" : "border-border-dark bg-accent "} rounded-lg py-5 pl-5 pr-2 mb-6`}
         >
-          {message?.map((msg, index) => (
-            <p
-              key={index}
-              className={`${(msg as any).role === "user" ? "text-right text-green-500" : "text-left text-red-500"} message text-[14px] lg:text-2xl font-medium px-4 py-2`}
-            >
-              {/* <span className="uppercase ">{(msg as any).role}</span> :{" "} */}
-              <span>{(msg as any).content}</span>
-            </p>
-          ))}
+          <div
+            ref={chatBoxRef}
+            className={`max-w-[1300px] max-h-[500px] overflow-y-auto`}
+          >
+            {message?.map((msg, index) => (
+              <div
+                key={index}
+                className={`${(msg as any).role === "user" && "p-5 bg-[#e6e6e6] rounded-lg w-3/4 ml-auto"} message text-dark text-[14px] lg:text-2xl px-4 py-2`}
+                dangerouslySetInnerHTML={markdownify(msg.content, true)}
+              />
+            ))}
+          </div>
         </div>
       )}
 
@@ -163,13 +128,37 @@ const QuestionSection = ({
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Enter a prompt here"
           className={`w-full bg-transparent ${variant ? "border-border-dark focus:border-border-dark text-dark placeholder:text-dark-light" : "border-border focus:border-border text-text placeholder:text-light"} p-4 pr-16 lg:px-10 lg:pr-80 lg:py-[30px] rounded-lg focus:outline-none focus:ring-0 focus:shadow-none lg:text-2xl`}
+          disabled={isLoading}
         />
         <button
           className={`absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center justify-center btn ${variant ? "btn-primary" : "btn-secondary"}  p-3 lg:px-9 lg:py-5 text-lg lg:text-3xl`}
           type="submit"
+          disabled={!search || isLoading}
         >
-          <FaMagnifyingGlass className="inline-block align-baseline lg:mr-3" />
-          <span className="hidden lg:block">Search Here</span>
+          {isLoading ? (
+            <div className="flex items-baseline">
+              <p className="mr-2">Searching</p>
+              <div className="flex space-x-1">
+                <div
+                  className="w-2 h-2 bg-white rounded-full animate-bounce"
+                  style={{ animationDelay: "0s" }}
+                ></div>
+                <div
+                  className="w-2 h-2 bg-white rounded-full animate-bounce"
+                  style={{ animationDelay: "0.2s" }}
+                ></div>
+                <div
+                  className="w-2 h-2 bg-white rounded-full animate-bounce"
+                  style={{ animationDelay: "0.4s" }}
+                ></div>
+              </div>
+            </div>
+          ) : (
+            <>
+              <FaMagnifyingGlass className="inline-block align-baseline lg:mr-3" />
+              <span className="hidden lg:block">Search Here</span>
+            </>
+          )}
         </button>
       </form>
     </>
