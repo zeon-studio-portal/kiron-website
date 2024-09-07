@@ -1,6 +1,7 @@
 "use client";
 
 import { markdownify } from "@/lib/utils/textConverter";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import { FaMagnifyingGlass } from "react-icons/fa6";
@@ -19,13 +20,21 @@ const QuestionSection = ({
   const chatBoxRef = useRef<HTMLDivElement>(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  const questionParams = useSearchParams();
+  const question = questionParams.get("q");
+  useEffect(() => {
+    if (question) {
+      setSearch(question);
+      askKiron(question);
+    }
+  }, [question]);
+
   const errorAlert = () =>
     toast.error(
       "There was a problem with the request. Please try again later.",
     );
 
-  const askKiron = async (e: { preventDefault: () => void }) => {
-    e.preventDefault();
+  const askKiron = async (query: string) => {
     setIsLoading(true);
 
     try {
@@ -40,7 +49,7 @@ const QuestionSection = ({
           body: JSON.stringify([
             {
               role: "user",
-              content: search,
+              content: query,
             },
           ]),
         },
@@ -89,7 +98,7 @@ const QuestionSection = ({
           <SwiperSlide key={index} className="!h-auto">
             <div
               key={q}
-              onClick={setSearch.bind(this, q)}
+              onClick={() => setSearch(q)}
               className={`!min-h-full ${variant ? "bg-body-light text-dark" : "bg-accent text-text"} border border-border-dark rounded-lg cursor-pointer`}
             >
               <p
@@ -121,7 +130,13 @@ const QuestionSection = ({
         </div>
       )}
 
-      <form onSubmit={askKiron} className="relative">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          askKiron(search);
+        }}
+        className="relative"
+      >
         <input
           type="text"
           value={search}

@@ -1,6 +1,7 @@
 import CallToAction from "@/components/CallToAction";
 import Modal from "@/components/Modal";
 import Publication from "@/components/Publication";
+import SearchForm from "@/components/SearchForm";
 import config from "@/config/config.json";
 import languages from "@/config/language.json";
 import ImageFallback from "@/helpers/ImageFallback";
@@ -11,7 +12,6 @@ import SeoMeta from "@/partials/SeoMeta";
 import Accordion from "@/shortcodes/Accordion";
 import { Button } from "@/types";
 import path from "path";
-import { FaMagnifyingGlass } from "react-icons/fa6";
 import "swiper/css";
 
 // remove dynamicParams
@@ -160,35 +160,7 @@ const Home = ({ params }: { params: { lang: string } }) => {
               dangerouslySetInnerHTML={markdownify(kiron.subtitle)}
             />
           </div>
-          {/* <div className="px-4 py-5 lg:p-14 border border-border rounded-lg bg-accent mb-14">
-            <h3
-              className="text-[14px] lg:text-3xl font-medium leading-tight mb-10 text-text"
-              dangerouslySetInnerHTML={markdownify(kiron.discussion.title)}
-            />
-
-            {kiron.discussion.chat.map((chat) => (
-              <p
-                key={chat}
-                className="text-[12px] lg:text-2xl font-normal text-light mb-6 chat"
-                dangerouslySetInnerHTML={markdownify(chat)}
-              />
-            ))}
-          </div> */}
-
-          <form className="relative">
-            <input
-              type="text"
-              placeholder="Enter a prompt here"
-              className={`w-full bg-transparent "border-border focus:border-border text-text placeholder:text-light p-4 pr-16 lg:px-10 lg:pr-80 lg:py-[30px] rounded-lg focus:outline-none focus:ring-0 focus:shadow-none lg:text-2xl`}
-            />
-            <a
-              href="/kiron"
-              className={`absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center justify-center btn btn-secondary p-3 lg:px-9 lg:py-5 text-lg lg:text-3xl`}
-            >
-              <FaMagnifyingGlass className="inline-block align-baseline lg:mr-3" />
-              <span className="hidden lg:block">Search Here</span>
-            </a>
-          </form>
+          <SearchForm lang={lang} />
         </div>
       </section>
 
